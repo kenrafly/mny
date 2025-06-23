@@ -3,7 +3,6 @@ import "../globals.css";
 import React from "react";
 import type { Metadata } from "next";
 import "../globals.css";
-import Navbar from "@/components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Your App Title",
@@ -17,10 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body>
-        <Navbar />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
