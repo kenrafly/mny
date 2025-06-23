@@ -80,7 +80,7 @@ const Hero = () => {
           >
             Subscribe
           </Link>
-          <button className="p-2 bg-[#018CEB] w-36 flex items-center justify-center rounded-sm font-bold gap-2">
+          <button className="p-2 bg-[#018CEB] w-36 flex items-center justify-center rounded-sm font-bold gap-2 hover:cursor-pointer">
             <Image
               src="/info.svg"
               width={20}

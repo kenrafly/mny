@@ -41,7 +41,7 @@ const AllDonghuasGrid = () => {
               src={getDonghuaSrc(index)}
               alt={`Donghua ${index}`}
               fill
-              className="object-cover"
+              className="object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
             />
           </div>
         ))}
