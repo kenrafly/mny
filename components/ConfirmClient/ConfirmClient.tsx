@@ -2,11 +2,10 @@
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-type StaticPaymentInfo = {
-  [key: string]: string | { bank: string; number: string };
-};
+type PaymentInfo = string | { bank: string; number: string };
 
-const staticPaymentInfo: StaticPaymentInfo = {
+const staticPaymentInfo: Record<string, PaymentInfo> = {
+  qris: "QR CODE",
   dana: "082333248477",
   shopeepay: "082333248477",
   gopay: "082333248477",
@@ -14,19 +13,29 @@ const staticPaymentInfo: StaticPaymentInfo = {
   seabank: { bank: "SeaBank", number: "901673343551" },
 };
 
+// Normalize display names (from button labels) to internal keys
+const methodMap: Record<string, string> = {
+  QRIS: "qris",
+  DANA: "dana",
+  ShopeePay: "shopeepay",
+  GoPay: "gopay",
+  "BANK BRI": "bri",
+  SeaBank: "seabank",
+};
+
+const formatIDR = (value: number): string =>
+  new Intl.NumberFormat("id-ID").format(value);
+
 export default function ConfirmClient() {
   const searchParams = useSearchParams();
   const plan = searchParams.get("plan") || "Unknown Plan";
-  const priceParam = searchParams.get("price") || "0";
-  const methodParam = searchParams.get("method") || "QRIS";
+  const price = parseInt(searchParams.get("price") || "0");
+  const rawMethod = searchParams.get("method") || "QRIS";
+  const methodKey = methodMap[rawMethod] || rawMethod.toLowerCase(); // Fallback just in case
 
-  const method = methodParam.toLowerCase();
-  const price = parseInt(priceParam) || 0;
   const adminFee = 1000;
   const total = price + adminFee;
-
-  const formatIDR = (value: number): string =>
-    new Intl.NumberFormat("id-ID").format(value);
+  const paymentInfo = staticPaymentInfo[methodKey];
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center pt-20 px-4">
@@ -49,8 +58,7 @@ export default function ConfirmClient() {
           </span>
         </p>
 
-        {/* Show QR if QRIS, otherwise show static info */}
-        {method === "qris" ? (
+        {methodKey === "qris" ? (
           <div className="bg-black p-2 rounded-lg overflow-hidden border border-gray-600 mb-4">
             <Image
               src={`/payment/qris.jpg`}
@@ -69,28 +77,20 @@ export default function ConfirmClient() {
               No QR Available
             </p>
 
-            {method in staticPaymentInfo ? (
-              typeof staticPaymentInfo[method] === "string" ? (
+            {paymentInfo ? (
+              typeof paymentInfo === "string" ? (
                 <p>
-                  {methodParam}:{" "}
-                  <span className="text-white">
-                    {staticPaymentInfo[method] as string}
-                  </span>
+                  {rawMethod}: <span className="text-white">{paymentInfo}</span>
                 </p>
               ) : (
                 <>
-                  <p>
-                    Bank: {(staticPaymentInfo[method] as { bank: string }).bank}
-                  </p>
-                  <p>
-                    Account:{" "}
-                    {(staticPaymentInfo[method] as { number: string }).number}
-                  </p>
+                  <p>Bank: {paymentInfo.bank}</p>
+                  <p>Account: {paymentInfo.number}</p>
                 </>
               )
             ) : (
               <p className="text-red-400">
-                Payment info not available for {methodParam}
+                Payment info not available for {rawMethod}
               </p>
             )}
           </div>
