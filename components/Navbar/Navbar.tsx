@@ -26,10 +26,13 @@ const Navbar = () => {
     >
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex hover:cursor-pointer items-center gap-2">
+          <Link
+            href="/"
+            className="flex hover:cursor-pointer items-center gap-2"
+          >
             <h1 className="hidden md:block text-white">Donghua</h1>
             <Image src="/logo.svg" width={40} height={40} alt="" />
-          </div>
+          </Link>
 
           <div className="hidden max-md:flex">
             <select
@@ -77,12 +80,12 @@ const Navbar = () => {
             </button>
           )}
           <ul>
-            <Link
+            <a
               className="p-1 px-2 bg-[#D3A900] rounded-sm hover:bg-[#018CEB] duration-200 transition"
-              href="/"
+              href="#subscription-plans"
             >
               Subscribe
-            </Link>
+            </a>
           </ul>
         </div>
       </div>
