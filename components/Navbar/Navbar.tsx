@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { Rakkas } from "next/font/google";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 const rakkas = Rakkas({
   subsets: ["latin"],
@@ -14,7 +13,6 @@ const rakkas = Rakkas({
 });
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
   return (
     <nav
       className={`${rakkas.className} border-b border-gray-700 sticky top-0`}
