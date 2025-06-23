@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Rakkas } from "next/font/google";
 import Link from "next/link";
+import { CiSearch } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 
 const rakkas = Rakkas({
   subsets: ["latin"],
@@ -10,19 +13,66 @@ const rakkas = Rakkas({
 });
 
 const Navbar = () => {
+  const [searchInput, setSearchInput] = useState(false);
+  const router = useRouter();
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const path = e.target.value;
+    if (path) router.push(path);
+  };
+
   return (
     <nav
       className={`${rakkas.className} border-b border-gray-700 sticky top-0`}
     >
       <div className="flex justify-between pb-4">
         <div className="flex items-center gap-2">
-          <h1 className="text-white">Donghua</h1>
-          <Image src="/logo.svg" width={40} height={40} alt="" />
-        </div>
-        <div className="text-white">
-          <ul className="flex gap-2 items-center">
+          <div className="flex hover:cursor-pointer items-center gap-2">
+            <h1 className="hidden md:block text-white">Donghua</h1>
+            <Image src="/logo.svg" width={40} height={40} alt="" />
+          </div>
+
+          <div className="hidden max-md:flex">
+            <select
+              onChange={handleSelectChange}
+              className="bg-gray-800 text-white border border-gray-700 rounded-md p-2 hover:bg-gray-700 focus:bg-gray-700 focus:text-white transition duration-200"
+            >
+              <option className="bg-gray-800 text-white" value="">
+                Select
+              </option>
+              <option className="bg-gray-800 text-white" value="/">
+                Home
+              </option>
+              <option className="bg-gray-800 text-white" value="/about-us">
+                About Us
+              </option>
+              <option className="bg-gray-800 text-white" value="/list">
+                List
+              </option>
+            </select>
+          </div>
+          <div className="hidden md:flex gap-2 pl-4">
             <Link href="/about-us">About Us</Link>
             <Link href="/list">List</Link>
+          </div>
+        </div>
+        <div className="text-white flex gap-2 items-center">
+          {searchInput ? (
+            <input
+              autoFocus
+              type="text"
+              onBlur={() => setSearchInput(false)}
+              className="border border-white p-2 bg-gray-900 text-white"
+              placeholder="Search your donghua..."
+            />
+          ) : (
+            <button
+              onClick={() => setSearchInput(true)}
+              className="hover:cursor-pointer"
+            >
+              <CiSearch size={24} />
+            </button>
+          )}
+          <ul>
             <Link
               className="p-1 bg-[#018CEB] rounded-sm hover:bg-[#018CEB] duration-200 transition"
               href="/"
