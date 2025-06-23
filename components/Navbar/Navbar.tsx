@@ -1,10 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import React from "react";
 import { Rakkas } from "next/font/google";
 import Link from "next/link";
-import { CiSearch } from "react-icons/ci";
 
 const rakkas = Rakkas({
   subsets: ["latin"],
@@ -24,7 +21,6 @@ const Navbar = () => {
         </div>
         <div className="text-white">
           <ul className="flex gap-2 items-center">
-            <Link href="/">Home</Link>
             <Link href="/about-us">About Us</Link>
             <Link href="/list">List</Link>
             <Link
@@ -33,7 +29,6 @@ const Navbar = () => {
             >
               Subscribe
             </Link>
-            <CiSearch size={24} />
           </ul>
         </div>
       </div>
