@@ -74,12 +74,12 @@ const Hero = () => {
           {currentSlide.description}
         </p>
         <div className="flex gap-4 mt-6">
-          <Link
+          <a
             className="p-2 bg-[#D3A900] w-36 flex items-center justify-center rounded-sm font-bold "
-            href="/subscribe"
+            href="#subscribe"
           >
             Subscribe
-          </Link>
+          </a>
           <button className="p-2 bg-[#018CEB] w-36 flex items-center justify-center rounded-sm font-bold gap-2 hover:cursor-pointer">
             <Image
               src="/info.svg"
