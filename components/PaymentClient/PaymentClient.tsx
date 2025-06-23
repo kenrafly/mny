@@ -46,13 +46,19 @@ const PaymentClient: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white p-6 flex flex-col items-center justify-center pt-20">
       <div className="bg-[#1c1c1c] rounded-lg shadow-lg p-6 w-[90%] max-w-sm">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-300 blur-2xl opacity-10 rounded-full pointer-events-none z-0" />
         <h1 className="text-2xl font-bold text-center mb-4">
           Payment for {plan}
         </h1>
 
         <div className="text-lg mb-6 space-y-1 text-center">
-          <p>Price: <span className="font-semibold">Rp {formatIDR(price)}</span></p>
-          <p>Admin Fee: <span className="font-semibold">Rp {formatIDR(adminFee)}</span></p>
+          <p>
+            Price: <span className="font-semibold">Rp {formatIDR(price)}</span>
+          </p>
+          <p>
+            Admin Fee:{" "}
+            <span className="font-semibold">Rp {formatIDR(adminFee)}</span>
+          </p>
           <p className="text-yellow-400 font-bold text-xl">
             Total: Rp {formatIDR(total)}
           </p>
