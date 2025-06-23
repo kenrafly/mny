@@ -22,9 +22,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${rakkas.className} border-b border-gray-700 sticky top-0`}
+      className={`${rakkas.className} border-b border-gray-700 bg-black p-4 px-4  md:px-12 fixed top-0 left-0 w-full z-50`}
     >
-      <div className="flex justify-between pb-4">
+      <div className="flex justify-between">
         <div className="flex items-center gap-2">
           <div className="flex hover:cursor-pointer items-center gap-2">
             <h1 className="hidden md:block text-white">Donghua</h1>
@@ -51,8 +51,12 @@ const Navbar = () => {
             </select>
           </div>
           <div className="hidden md:flex gap-2 pl-4">
-            <Link href="/about-us">About Us</Link>
-            <Link href="/list">List</Link>
+            <Link href="/about-us" className="hover:text-yellow-300">
+              About Us
+            </Link>
+            <Link href="/list" className="hover:text-yellow-300">
+              List
+            </Link>
           </div>
         </div>
         <div className="text-white flex gap-2 items-center">
@@ -61,7 +65,7 @@ const Navbar = () => {
               autoFocus
               type="text"
               onBlur={() => setSearchInput(false)}
-              className="border border-white p-2 bg-gray-900 text-white"
+              className="border border-white p-1 text-white"
               placeholder="Search your donghua..."
             />
           ) : (
@@ -74,7 +78,7 @@ const Navbar = () => {
           )}
           <ul>
             <Link
-              className="p-1 bg-[#018CEB] rounded-sm hover:bg-[#018CEB] duration-200 transition"
+              className="p-1 px-2 bg-[#D3A900] rounded-sm hover:bg-[#018CEB] duration-200 transition"
               href="/"
             >
               Subscribe
