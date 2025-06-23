@@ -11,14 +11,14 @@ const plans = [
   },
   {
     title: "3 Months",
-    price: "8000",
-    display: "Rp8.000",
+    price: "30000",
+    display: "Rp30.000",
     duration: "/month",
   },
   {
     title: "5 Months",
-    price: "7000",
-    display: "Rp7.000",
+    price: "50000",
+    display: "Rp50.000",
     duration: "/month",
   },
 ];
