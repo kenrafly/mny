@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Rakkas } from "next/font/google";
-import Link from "next/link";
 import Image from "next/image";
 
 const rakkas = Rakkas({
