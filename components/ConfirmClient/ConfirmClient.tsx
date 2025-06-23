@@ -69,23 +69,29 @@ export default function ConfirmClient() {
               No QR Available
             </p>
 
-            {typeof staticPaymentInfo[method] === "string" ? (
-              <p>
-                {methodParam}:{" "}
-                <span className="text-white">
-                  {staticPaymentInfo[method] as string}
-                </span>
-              </p>
+            {method in staticPaymentInfo ? (
+              typeof staticPaymentInfo[method] === "string" ? (
+                <p>
+                  {methodParam}:{" "}
+                  <span className="text-white">
+                    {staticPaymentInfo[method] as string}
+                  </span>
+                </p>
+              ) : (
+                <>
+                  <p>
+                    Bank: {(staticPaymentInfo[method] as { bank: string }).bank}
+                  </p>
+                  <p>
+                    Account:{" "}
+                    {(staticPaymentInfo[method] as { number: string }).number}
+                  </p>
+                </>
+              )
             ) : (
-              <>
-                <p>
-                  Bank: {(staticPaymentInfo[method] as { bank: string }).bank}
-                </p>
-                <p>
-                  Account:{" "}
-                  {(staticPaymentInfo[method] as { number: string }).number}
-                </p>
-              </>
+              <p className="text-red-400">
+                Payment info not available for {methodParam}
+              </p>
             )}
           </div>
         )}
