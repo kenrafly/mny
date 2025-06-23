@@ -4,15 +4,19 @@ import Top10Movies from "@/components/Top10Movies/Top10Movies";
 import AllDonghuasGrid from "@/components/List/List";
 import Footer from "@/components/Footer/Footer";
 import SubscriptionPlans from "@/components/Pricing/Pricing";
+import { Suspense } from "react";
 
 const page = () => {
   return (
     <div>
-      <Hero />
-      <Top10Movies />
-      <SubscriptionPlans />
-      <AllDonghuasGrid />
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Hero />
+        <Hero />
+        <Top10Movies />
+        <SubscriptionPlans />
+        <AllDonghuasGrid />
+        <Footer />
+      </Suspense>
     </div>
   );
 };
