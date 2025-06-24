@@ -29,7 +29,7 @@ export default function Sidebar({
     {
       id: "dashboard",
       label: "Dashboard",
-      path: "/admin/dashboard",
+      path: "/admin",
       icon: <MdDashboard size={24} />,
     },
     {
@@ -52,7 +52,7 @@ export default function Sidebar({
         className={`flex flex-col bg-gray-900 h-screen ${
           isMobile
             ? "transition-all duration-500 ease-in-out"
-            : "transition-all duration-300 ease-in-out" 
+            : "transition-all duration-300 ease-in-out"
         } ${
           isMobile
             ? isOpen
