@@ -37,7 +37,7 @@ const PaymentClient: React.FC = () => {
       method: selected,
     }).toString();
 
-    router.push(`/payment/confirm?${query}`);
+    router.push(`/payment/donation?${query}`);
   };
 
   const formatIDR = (value: number): string =>

@@ -75,7 +75,7 @@ const Hero = () => {
         <div className="flex gap-4 mt-6">
           <a
             className="p-2 bg-[#D3A900] w-36 flex items-center justify-center rounded-sm font-bold "
-            href="#subscribe"
+            href="#subscription-plans"
           >
             Subscribe
           </a>

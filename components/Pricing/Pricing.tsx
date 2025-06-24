@@ -72,7 +72,7 @@ const SubscriptionPlans = () => {
                       }`
                     )
                   }
-                  className="mt-4 mb-6 bg-yellow-400 text-black font-semibold py-2 px-6 rounded w-full hover:bg-yellow-300 transition"
+                  className="mt-4 mb-6 bg-yellow-400 text-black font-semibold py-2 px-6 rounded w-full hover:bg-yellow-300 transition hover:cursor-pointer"
                 >
                   Subscribe →
                 </button>

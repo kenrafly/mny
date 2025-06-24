@@ -68,7 +68,17 @@ const Navbar = () => {
               autoFocus
               type="text"
               onBlur={() => setSearchInput(false)}
-              className="border border-white p-1 text-white"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  const query = (e.target as HTMLInputElement).value;
+                  if (query.trim()) {
+                    router.push(
+                      `/list?search=${encodeURIComponent(query.trim())}`
+                    );
+                  }
+                }
+              }}
+              className="border border-white p-1 text-white bg-black outline-none"
               placeholder="Search your donghua..."
             />
           ) : (

@@ -13,7 +13,6 @@ const staticPaymentInfo: Record<string, PaymentInfo> = {
   seabank: { bank: "SeaBank", number: "901673343551" },
 };
 
-// Normalize display names (from button labels) to internal keys
 const methodMap: Record<string, string> = {
   QRIS: "qris",
   DANA: "dana",
@@ -30,11 +29,12 @@ export default function ConfirmClient() {
   const searchParams = useSearchParams();
   const plan = searchParams.get("plan") || "Unknown Plan";
   const price = parseInt(searchParams.get("price") || "0");
+  const donation = parseInt(searchParams.get("donation") || "0");
   const rawMethod = searchParams.get("method") || "QRIS";
-  const methodKey = methodMap[rawMethod] || rawMethod.toLowerCase(); // Fallback just in case
+  const methodKey = methodMap[rawMethod] || rawMethod.toLowerCase();
 
   const adminFee = 1000;
-  const total = price + adminFee;
+  const total = price + adminFee + donation;
   const paymentInfo = staticPaymentInfo[methodKey];
 
   return (
@@ -51,6 +51,12 @@ export default function ConfirmClient() {
           Admin Fee:{" "}
           <span className="font-semibold">Rp {formatIDR(adminFee)}</span>
         </p>
+        {donation > 0 && (
+          <p className="mb-1">
+            Donation:{" "}
+            <span className="font-semibold">Rp {formatIDR(donation)}</span>
+          </p>
+        )}
         <p className="mb-4">
           <strong>Total:</strong>{" "}
           <span className="text-yellow-400 font-bold text-lg">
